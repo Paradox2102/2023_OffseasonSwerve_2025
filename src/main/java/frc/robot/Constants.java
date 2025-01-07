@@ -140,10 +140,10 @@ public final class Constants {
   public static final double k_driveRadius = .475953574;
 
   // Bolt
-  public static final double k_FLOffset = 0.9 - (Math.PI / 2);
-  public static final double k_FROffset = 6.05;
-  public static final double k_BLOffset = 2.18 +(Math.PI);
-  public static final double k_BROffset = 4.69 + (Math.PI / 2);
+  public static final double k_FLOffset = 0.67 - (Math.PI / 2);
+  public static final double k_FROffset = -6.05;
+  public static final double k_BLOffset = -5.13 +(Math.PI);
+  public static final double k_BROffset = -6.26 + (Math.PI / 2);
 
   public static final boolean k_isGyroReversed = true;
 
