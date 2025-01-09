@@ -3,6 +3,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.wpilibj.Timer;
@@ -12,8 +15,9 @@ import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
   private double m_power = 0;
-  private TalonFX m_motor = new TalonFX(Constants.k_intakeMotor);
-  private final double k_stallPower = .075;
+  private SparkFlex m_motor = new SparkFlex(Constants.k_intakeMotor, MotorType.kBrushless);
+  private RelativeEncoder m_encoder = m_motor.getEncoder();
+  private final double k_stallPower = -.075;
   private Timer m_stallTimer = new Timer();
 
   public enum IntakeType {INTAKE, OUTTAKE, STOP}
@@ -30,11 +34,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intake() {
-    m_power = Constants.k_isCubeMode ? Constants.CubeConstants.k_intakePower : Constants.ConeConstants.k_intakePower;
+    m_power = Constants.CubeConstants.k_intakePower;
   }
 
   public void outtake() {
-    m_power = Constants.k_isCubeMode ? Constants.CubeConstants.k_outtakePower : Constants.ConeConstants.k_outtakePower;
+    m_power = Constants.CubeConstants.k_outtakePower;
   }
 
   public void stop() {
@@ -42,13 +46,13 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void setBrakeMode(boolean brake) {
-    m_motor.setNeutralMode(brake ? NeutralModeValue.Brake : NeutralModeValue.Coast);
+    // m_motor.(brake ? NeutralModeValue.Brake : NeutralModeValue.Coast);
   }
 
   // Lower power if game piece is acquired
   public boolean isIntakeStalled() {
-    StatusSignal<AngularVelocity> speed = m_motor.getVelocity();
-    boolean isIntakeStalled = Math.abs(speed.getValueAsDouble()) < 1 && Math.abs(m_power) > k_stallPower;
+    double speed = m_encoder.getVelocity();
+    boolean isIntakeStalled = Math.abs(speed) < 1 && Math.abs(m_power) > k_stallPower;
     if (isIntakeStalled) {
       if (m_stallTimer.get() > .25) {
         return true;
@@ -63,5 +67,5 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     m_motor.set(m_power);
-    SmartDashboard.putNumber("Intake Speed", m_motor.getVelocity().getValueAsDouble());
+    SmartDashboard.putNumber("Intake Speed", m_encoder.getVelocity());
   }}

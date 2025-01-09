@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class WristSubsystem extends SubsystemBase {
-  private TalonFX m_motor = new TalonFX(Constants.k_wristMotor, "Default Name");
+  private TalonFX m_motor = new TalonFX(Constants.k_wristMotor, "rio");
   private double k_deadzonePower = .015;
   private double m_targetAngleDegrees = 0;
   private double m_power = 0;
@@ -51,7 +51,7 @@ public class WristSubsystem extends SubsystemBase {
   }
 
   public void setPower(double power) {
-    m_motor.set(power);
+    m_motor.set(-power);
   }
 
   public void setBrakeMode(boolean brake) {
@@ -64,7 +64,7 @@ public class WristSubsystem extends SubsystemBase {
   }
 
   private double getAngleDegrees() {
-    return m_motor.getPosition().getValueAsDouble() * Constants.k_wristTicksToDegrees;
+    return -m_motor.getPosition().getValueAsDouble() * Constants.k_wristTicksToDegrees;
   }
 
   private void checkLimits() {
@@ -83,7 +83,9 @@ public class WristSubsystem extends SubsystemBase {
 
   private void runP() {
     if (!m_manualControl) {
+      System.out.println(m_targetAngleDegrees);
       m_power = m_PID.calculate(getAngleDegrees(), m_targetAngleDegrees) + k_deadzonePower;
+      m_power = -m_power;
     }
   }
   

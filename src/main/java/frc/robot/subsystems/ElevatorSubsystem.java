@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ElevatorSubsystem extends SubsystemBase {
-  private TalonFX m_motor = new TalonFX(Constants.k_elevatorMotor, "Default Name");
-  private TalonFX m_follower = new TalonFX(Constants.k_elevatorFollower, "Default Name");
+  private TalonFX m_motor = new TalonFX(Constants.k_elevatorMotor, "rio");
+  private TalonFX m_follower = new TalonFX(Constants.k_elevatorFollower, "rio");
   private DigitalInput m_midSwitch = new DigitalInput(Constants.k_midSwitch);
   private DigitalInput m_bottomSwitch = new DigitalInput(Constants.k_bottomSwitch);
   private DigitalInput m_topSwitch = new DigitalInput(Constants.k_topSwitch);
@@ -29,10 +29,10 @@ public class ElevatorSubsystem extends SubsystemBase {
   private final double k_d = .004;
   private PIDController m_PID = new PIDController(k_p, k_i, k_d);
 
-  private final double k_FLow = .008;
+  private final double k_FLow = .1;
   private final double k_FHigh = .01;
   private final double k_midHeightInches = 11;
-  private final double k_maxDownPower = -.2;
+  private final double k_maxDownPower = -.1;
   private boolean m_brake = true;
 
   /** Creates a new ElevatorSubsystem. */
@@ -63,7 +63,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   private void setPower(double power) {
-    m_motor.set(power);
+    m_motor.set(-power);
   }
 
   public void setBrakeMode(boolean brake) {
@@ -76,7 +76,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   private double getExtentInches() {
-    return m_motor.getPosition().getValueAsDouble() * Constants.k_elevatorTicksToInches;
+    return -m_motor.getPosition().getValueAsDouble() * Constants.k_elevatorTicksToInches;
   }
 
   private void checkLimitSwitches() {
@@ -108,8 +108,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     runP();
-    checkLimitSwitches();
-    SmartDashboard.putNumber("Elevator Extent", m_motor.getPosition().getValueAsDouble() * Constants.k_elevatorTicksToInches);
+    // checkLimitSwitches();
+    SmartDashboard.putNumber("Elevator Extent", getExtentInches());
     SmartDashboard.putBoolean("Bottom Switch", m_bottomSwitch.get());
     SmartDashboard.putBoolean("Mid Switch", m_midSwitch.get());
     SmartDashboard.putBoolean("High Switch", m_topSwitch.get());

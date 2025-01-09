@@ -163,8 +163,10 @@ public class RobotContainer {
     m_xbox.leftBumper().onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, true));
 
     // Driver 2
+    m_stick.button(1).onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, false));
+    m_stick.button(2).onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, true));
     m_stick.button(4).whileTrue(new ManualWristCommand(m_wristSubsystem, () -> m_stick.getY()));
-    m_stick.button(6).whileTrue(new ManualElevatorCommand(m_elevatorSubsystem, () -> m_stick.getY()));
+    // m_stick.button(6).whileTrue(new ManualElevatorCommand(m_elevatorSubsystem, () -> m_stick.getY()));
     
     m_stick.button(5).onTrue(new ResetWrist(m_wristSubsystem));
     m_stick.button(3).onTrue(new SetCoastModeCommand(m_wristSubsystem, m_elevatorSubsystem, new ToggleTrigger(m_brakeMode)));
@@ -176,8 +178,9 @@ public class RobotContainer {
     m_stick.button(12).onTrue(new DecideArmPosCommand(ArmPosition.SINGLE));
     // m_stick.button(12).onTrue(new SetLEDColorCommand(m_ledSubsystem, Color.kChartreuse, Color.kThistle));
 
-    m_stick.button(8).whileTrue(new RunCommand(() -> m_driveSubsystem.setX(), m_driveSubsystem));
-    m_stick.button(2).whileTrue(new RunCommand(()-> m_driveSubsystem.setX(), m_driveSubsystem));
+    m_stick.button(8).whileTrue(new IntakeCommand(m_intakeSubsystem, false));
+    m_stick.button(6).whileTrue(new IntakeCommand(m_intakeSubsystem, true));
+    // m_stick.button(2).whileTrue(new RunCommand(()-> m_driveSubsystem.setX(), m_driveSubsystem));
 
     // Auto Selection
     m_selectAuto.setDefaultOption("Nothing", new InstantCommand());

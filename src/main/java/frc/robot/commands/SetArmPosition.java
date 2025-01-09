@@ -34,28 +34,28 @@ public class SetArmPosition extends InstantCommand {
     m_pose = m_neutralPose ? ArmPosition.NEUTRAL : Constants.k_armPosition;
     switch (m_pose) {
       case NEUTRAL:
-        elevator = Constants.k_neutralElevatorInches;
         wrist = Constants.k_neutralWristDegrees;
+        elevator = Constants.k_neutralElevatorInches;
         break;
       case HIGH:
-        wrist = Constants.k_isCubeMode ? Constants.CubeConstants.k_highWristDegrees : Constants.ConeConstants.k_highWristDegrees;
-        elevator = Constants.k_isCubeMode ? Constants.CubeConstants.k_highElevatorInches : Constants.ConeConstants.k_highElevatorInches;
+        wrist = Constants.ConeConstants.k_highWristDegrees;
+        elevator = Constants.ConeConstants.k_highElevatorInches;
         break;
       case MID:
-        wrist = Constants.k_isCubeMode ? Constants.CubeConstants.k_midWristDegrees : Constants.ConeConstants.k_midWristDegrees;
-        elevator = Constants.k_isCubeMode ? Constants.CubeConstants.k_midElevatorInches : Constants.ConeConstants.k_midElevatorInches;
+        wrist = Constants.ConeConstants.k_groundWristDegrees;
+        elevator = Constants.ConeConstants.k_groundElevatorInches;
         break;
       case SINGLE:
-        wrist = Constants.k_isCubeMode ? Constants.CubeConstants.k_singleWristDegrees : Constants.ConeConstants.k_singleWristDegrees;
-        elevator = Constants.k_isCubeMode ? Constants.CubeConstants.k_singleElevatorInches : Constants.ConeConstants.k_singleElevatorInches;
+        wrist = Constants.ConeConstants.k_groundWristDegrees;
+        elevator = Constants.ConeConstants.k_groundElevatorInches;
         break;
       case DOUBLE:
-        wrist = Constants.k_isCubeMode ? Constants.CubeConstants.k_doubleWristDegrees : Constants.ConeConstants.k_doubleWristDegrees;
-        elevator = Constants.k_isCubeMode ? Constants.CubeConstants.k_doubleElevatorInches : Constants.ConeConstants.k_doubleElevatorInches;
+        wrist = Constants.ConeConstants.k_groundWristDegrees;
+        elevator = Constants.ConeConstants.k_groundElevatorInches;
         break;
       case GROUND:
-        wrist = Constants.k_isCubeMode ? Constants.CubeConstants.k_groundWristDegrees : Constants.ConeConstants.k_groundWristDegrees;
-        elevator = Constants.k_isCubeMode ? Constants.CubeConstants.k_groundElevatorInches : Constants.ConeConstants.k_groundElevatorInches;
+        wrist = Constants.ConeConstants.k_groundWristDegrees;
+        elevator = Constants.ConeConstants.k_groundElevatorInches;
         break;
     }
     m_wristSubsystem.setAngleDegrees(wrist);

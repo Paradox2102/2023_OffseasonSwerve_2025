@@ -48,24 +48,24 @@ public final class Constants {
   public static final int k_elevatorFollower = 14;
   public static final int k_wristMotor = 9;
   public static final int k_topSwitch = 7;
-  public static final int k_midSwitch = 9;
-  public static final int k_bottomSwitch = 8;
+  public static final int k_midSwitch = 8;
+  public static final int k_bottomSwitch = 9;
 
   // Elevator Constants
   public static final double k_minExtentInches = 0;
   public static final double k_maxExtentInches = 46;
-  public static final double k_elevatorTicksToInches = 5.0/5010;
+  public static final double k_elevatorTicksToInches = 5.0/2.33;
   public static final double k_elevatorInchesToTicks = 1.0/k_elevatorTicksToInches;
 
   // Wrist Constants
-  public static final double k_wristTicksToDegrees = 90.0/75948;
+  public static final double k_wristTicksToDegrees = 90.0/44.5;
   public static final double k_wristDegreestoTicks = 1.0/k_wristTicksToDegrees;
   public static final double k_minAngleDegrees = 0;
   public static final double k_maxAngleDegrees = 165;
 
   // Neutral Pose
   public static final double k_neutralElevatorInches = 0;
-  public static final double k_neutralWristDegrees = 10;
+  public static final double k_neutralWristDegrees = 0;
 
   public enum ArmPosition {
     HIGH,
@@ -80,7 +80,7 @@ public final class Constants {
   public static final class CubeConstants {
     // Intake
     public static final double k_intakePower = -.8;
-    public static final double k_outtakePower = .5;
+    public static final double k_outtakePower = .3;
     public static final double k_intakeF = 0;
 
     // Elevator
@@ -111,25 +111,25 @@ public final class Constants {
     public static final double k_midElevatorInches = 31.5;
     public static final double k_singleElevatorInches = 0;
     public static final double k_doubleElevatorInches = 16.6;
-    public static final double k_groundElevatorInches = 1.8;
+    public static final double k_groundElevatorInches = 10;
 
     // Wrist
-    public static final double k_highWristDegrees = 54.9;
+    public static final double k_highWristDegrees = 120;
     public static final double k_midWristDegrees = 69.5;
     public static final double k_singleWristDegrees = 10.4;
     public static final double k_doubleWristDegrees = 2.3;
-    public static final double k_groundWristDegrees = 76;
+    public static final double k_groundWristDegrees = 63.1;
   }
 
   // DRIVETRAIN SPARK MAX IDs
   // Front of robot is opposite battery
   public static final int k_FRDriveMotor = 1; // Front Right // 3
-  public static final int k_FLDriveMotor = 4; // Front Left // 1
+  public static final int k_FLDriveMotor = 3; // Front Left // 1
   public static final int k_BRDriveMotor = 5; // Back Right // 7
   public static final int k_BLDriveMotor = 7; // Back Left // 5
 
   public static final int k_FRTurningMotor = 2; // 4
-  public static final int k_FLTurningMotor = 3; // 2
+  public static final int k_FLTurningMotor = 4; // 2
   public static final int k_BRTurningMotor = 6; // 8
   public static final int k_BLTurningMotor = 8; // 6
 
@@ -140,10 +140,10 @@ public final class Constants {
   public static final double k_driveRadius = .475953574;
 
   // Bolt
-  public static final double k_FLOffset = 0.67 - (Math.PI / 2);
-  public static final double k_FROffset = -6.05;
-  public static final double k_BLOffset = -5.13 +(Math.PI);
-  public static final double k_BROffset = -6.26 + (Math.PI / 2);
+  public static final double k_FLOffset = 0.937 - (Math.PI / 2);
+  public static final double k_FROffset = 0.079;
+  public static final double k_BLOffset = 1.153 + (Math.PI);
+  public static final double k_BROffset = 0.834 + (Math.PI / 2);
 
   public static final boolean k_isGyroReversed = true;
 
