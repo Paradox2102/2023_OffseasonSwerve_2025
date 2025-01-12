@@ -138,10 +138,10 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // Update the odometry in the periodic block
-    SmartDashboard.putNumber("ATurn FR", m_frontRight.getPosition().angle.getRadians());///Math.PI);
-    SmartDashboard.putNumber("ATurn FL", m_frontLeft.getPosition().angle.getRadians());// - (Math.PI / 2)) / Math.PI);
-    SmartDashboard.putNumber("ATurn BR", m_backRight.getPosition().angle.getRadians());// + (Math.PI / 2)) / Math.PI);
-    SmartDashboard.putNumber("ATurn BL", m_backLeft.getPosition().angle.getRadians());// + (Math.PI)) / Math.PI);
+    SmartDashboard.putNumber("ATurn FR", m_frontRight.getPosition().angle.getRadians());
+    SmartDashboard.putNumber("ATurn FL", m_frontLeft.getPosition().angle.getRadians() - (Math.PI / 2));
+    SmartDashboard.putNumber("ATurn BR", m_backRight.getPosition().angle.getRadians()+ (Math.PI / 2));
+    SmartDashboard.putNumber("ATurn BL", m_backLeft.getPosition().angle.getRadians()+ (Math.PI));
     // SmartDashboard.putData("Gyro Angle", m_gyro);
     // SmartDashboard.putNumber("Roll", getRoll());
     // SmartDashboard.putNumber("Pitch", getPitch());
