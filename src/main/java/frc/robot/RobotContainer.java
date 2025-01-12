@@ -27,6 +27,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoOrientCommand;
 import frc.robot.commands.DecideArmPosCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.IntakeReefscape;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.ResetWrist;
 import frc.robot.commands.SetArmPosition;
@@ -157,7 +158,7 @@ public class RobotContainer {
       () -> m_xbox.getLeftX()
     ));
 
-    m_xbox.rightTrigger().whileTrue(new IntakeCommand(m_intakeSubsystem, true));
+    m_xbox.rightTrigger().whileTrue(new IntakeReefscape(m_intakeSubsystem, m_elevatorSubsystem, m_wristSubsystem));
     m_xbox.leftTrigger().whileTrue(new IntakeCommand(m_intakeSubsystem, false));
     m_xbox.rightBumper().onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, false));
     m_xbox.leftBumper().onTrue(new SetArmPosition(m_wristSubsystem, m_elevatorSubsystem, true));
@@ -173,9 +174,9 @@ public class RobotContainer {
 
     m_stick.button(7).onTrue(new DecideArmPosCommand(ArmPosition.HIGH));
     m_stick.button(9).onTrue(new DecideArmPosCommand(ArmPosition.MID));
-    m_stick.button(11).onTrue(new DecideArmPosCommand(ArmPosition.GROUND));
+    m_stick.button(12).onTrue(new DecideArmPosCommand(ArmPosition.GROUND));
     m_stick.button(10).onTrue(new DecideArmPosCommand(ArmPosition.DOUBLE));
-    m_stick.button(12).onTrue(new DecideArmPosCommand(ArmPosition.SINGLE));
+    m_stick.button(11).onTrue(new DecideArmPosCommand(ArmPosition.SINGLE));
     // m_stick.button(12).onTrue(new SetLEDColorCommand(m_ledSubsystem, Color.kChartreuse, Color.kThistle));
 
     m_stick.button(8).whileTrue(new IntakeCommand(m_intakeSubsystem, false));

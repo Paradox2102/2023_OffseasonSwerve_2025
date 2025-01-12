@@ -29,8 +29,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   private final double k_d = .004;
   private PIDController m_PID = new PIDController(k_p, k_i, k_d);
 
-  private final double k_FLow = .1;
-  private final double k_FHigh = .01;
+  private final double k_FLow = .01;
+  private final double k_FHigh = .008;
   private final double k_midHeightInches = 11;
   private final double k_maxDownPower = -.1;
   private boolean m_brake = true;
@@ -56,8 +56,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   private double getF() {
-    if (getExtentInches() <= 0) {
-      return 0;
+    if (getExtentInches() <= 1) {
+      return -.1;
     }
     return getExtentInches() > k_midHeightInches ? k_FHigh : k_FLow;
   }
@@ -99,6 +99,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     if (!m_manualControl) {
       m_power = m_PID.calculate(extentInches, m_targetExtentInches) + getF();
       m_power = m_power < k_maxDownPower ? k_maxDownPower : m_power;
+      m_power = m_power > .4 ? .4 : m_power;
     }
     SmartDashboard.putBoolean("Bottom Switch", m_bottomSwitch.get());
     SmartDashboard.putBoolean("Top Switch", m_topSwitch.get());
@@ -108,7 +109,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     runP();
-    // checkLimitSwitches();
+    checkLimitSwitches();
     SmartDashboard.putNumber("Elevator Extent", getExtentInches());
     SmartDashboard.putBoolean("Bottom Switch", m_bottomSwitch.get());
     SmartDashboard.putBoolean("Mid Switch", m_midSwitch.get());

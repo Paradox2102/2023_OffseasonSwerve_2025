@@ -42,12 +42,12 @@ public class SetArmPosition extends InstantCommand {
         elevator = Constants.ConeConstants.k_highElevatorInches;
         break;
       case MID:
-        wrist = Constants.ConeConstants.k_groundWristDegrees;
-        elevator = Constants.ConeConstants.k_groundElevatorInches;
+        wrist = Constants.ConeConstants.k_midWristDegrees;
+        elevator = Constants.ConeConstants.k_midElevatorInches;
         break;
       case SINGLE:
-        wrist = Constants.ConeConstants.k_groundWristDegrees;
-        elevator = Constants.ConeConstants.k_groundElevatorInches;
+        wrist = Constants.ConeConstants.k_singleWristDegrees;
+        elevator = Constants.ConeConstants.k_singleElevatorInches;
         break;
       case DOUBLE:
         wrist = Constants.ConeConstants.k_groundWristDegrees;

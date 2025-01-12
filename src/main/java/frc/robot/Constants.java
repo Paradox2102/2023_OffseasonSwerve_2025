@@ -64,7 +64,7 @@ public final class Constants {
   public static final double k_maxAngleDegrees = 165;
 
   // Neutral Pose
-  public static final double k_neutralElevatorInches = 0;
+  public static final double k_neutralElevatorInches = 2;
   public static final double k_neutralWristDegrees = 0;
 
   public enum ArmPosition {
@@ -79,7 +79,7 @@ public final class Constants {
   // Cube presets
   public static final class CubeConstants {
     // Intake
-    public static final double k_intakePower = -.8;
+    public static final double k_intakePower = -.4;
     public static final double k_outtakePower = .3;
     public static final double k_intakeF = 0;
 
@@ -107,18 +107,18 @@ public final class Constants {
     public static final double k_intakeF = -CubeConstants.k_intakeF;
 
     // Elevator
-    public static final double k_highElevatorInches = 42.2;
-    public static final double k_midElevatorInches = 31.5;
-    public static final double k_singleElevatorInches = 0;
+    public static final double k_highElevatorInches = 44.5;
+    public static final double k_midElevatorInches = 29;
+    public static final double k_singleElevatorInches = 6.22;
     public static final double k_doubleElevatorInches = 16.6;
-    public static final double k_groundElevatorInches = 10;
+    public static final double k_groundElevatorInches = 15.4;
 
     // Wrist
-    public static final double k_highWristDegrees = 120;
-    public static final double k_midWristDegrees = 69.5;
-    public static final double k_singleWristDegrees = 10.4;
+    public static final double k_highWristDegrees = 123;
+    public static final double k_midWristDegrees = 129;
+    public static final double k_singleWristDegrees = 83.3;
     public static final double k_doubleWristDegrees = 2.3;
-    public static final double k_groundWristDegrees = 63.1;
+    public static final double k_groundWristDegrees = 67.5;
   }
 
   // DRIVETRAIN SPARK MAX IDs
@@ -140,7 +140,7 @@ public final class Constants {
   public static final double k_driveRadius = .475953574;
 
   // Bolt
-  public static final double k_FLOffset = 0.937 - (Math.PI / 2);
+  public static final double k_FLOffset = 0.937 - (Math.PI / 2); 
   public static final double k_FROffset = 0.079;
   public static final double k_BLOffset = 1.153 + (Math.PI);
   public static final double k_BROffset = 0.834 + (Math.PI / 2);
