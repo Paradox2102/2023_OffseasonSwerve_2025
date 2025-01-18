@@ -27,6 +27,7 @@ public class IntakeSubsystem extends SubsystemBase {
     setBrakeMode(true);
     m_stallTimer.reset();
     m_stallTimer.start();
+    m_motor.setInverted(true);
   }
 
   public void setPower(double power) {
